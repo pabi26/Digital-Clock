@@ -5,6 +5,50 @@ body {
   margin: 0 auto;
 }
 
+#weather{
+text-align: right;
+}
+
+span{
+  cursor: pointer;
+}
+
+span:hover{
+  color: blue;
+}
+
+
+#weather-pop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+}
+
+#weather-info{
+  width: 400px;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0.753);
+  margin: 50px auto;
+  
+
+}
+
+#close-weather{
+  margin: 5px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(0, 0, 0);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 #clock{
   padding-top: 100px;
   display: flex;
@@ -15,10 +59,19 @@ body {
   color: rgb(255, 4, 4);
 }
 
+#militaryTime{
+  display: none;
+}
+
 #display-time{
   display: flex;
   justify-content: space-around;
 }
+
+
+
+
+
 
 
 label{

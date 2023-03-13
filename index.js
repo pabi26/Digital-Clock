@@ -1,4 +1,5 @@
 const toggleSwitch = document.getElementById('toggle')
+const weather = document.getElementById('weather')
 
 function updateDate() {
     let now = new Date();
@@ -58,10 +59,44 @@ function updateStandardTime() {
 
 toggleSwitch.addEventListener('click', function(){
     if (event.target.checked){
-        console.log('clicked')
-        updateMilitaryTime()
+        document.getElementById('militaryTime').style.display = 'block'
+        document.getElementById('standardTime').style.display = 'none'
+        document.getElementById('clock').style.color = 'green'
+        
     } else if (event.target.checked === false){
         console.log('not clicked')
-        updateStandardTime()
+        document.getElementById('militaryTime').style.display = 'none'
+        document.getElementById('standardTime').style.display = 'block'
+        document.getElementById('clock').style.color = 'red'
+        
     }
 })
+
+weather.addEventListener('click', function() {
+    document.getElementById('weather-pop').style.display = 'block'
+})
+
+document.getElementById('close-weather').addEventListener('click', function(){
+    document.getElementById('weather-pop').style.display = 'none'
+})
+
+async function getWeather(city) {
+    const apiKey = "342156faaf3a105ea1ff8c76d5dd441c";
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      const temp = data.main.temp;
+      const description = data.weather[0].description;
+      return `The weather in ${city} is currently ${temp}°C with ${description}.`;
+    } catch (error) {
+      console.error(error);
+      return "Sorry, we could not retrieve the weather at this time.";
+    }
+  }
+  
+
+  getWeather("Toronto")
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
