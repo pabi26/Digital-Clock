@@ -1,5 +1,6 @@
 const toggleSwitch = document.getElementById('toggle')
 const weather = document.getElementById('weather')
+let info = document.getElementById('info')
 
 function updateDate() {
     let now = new Date();
@@ -80,23 +81,30 @@ document.getElementById('close-weather').addEventListener('click', function(){
     document.getElementById('weather-pop').style.display = 'none'
 })
 
+
 async function getWeather(city) {
     const apiKey = "342156faaf3a105ea1ff8c76d5dd441c";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    
+  
     try {
       const response = await fetch(url);
       const data = await response.json();
       const temp = data.main.temp;
       const description = data.weather[0].description;
-      return `The weather in ${city} is currently ${temp}°C with ${description}.`;
+  
+      const info = document.getElementById("info");
+      info.innerHTML = `
+        <h1>Local Weather Forecast</h1>
+        <h3 id="location">${city}:</h3>
+        <h3 id="temp">${temp}°C</h3>
+        <h3 id="statement">The weather in ${city} is currently ${temp}°C with ${description}.</h3>
+      `;
     } catch (error) {
       console.error(error);
       return "Sorry, we could not retrieve the weather at this time.";
     }
   }
   
-
   getWeather("Toronto")
   .then(result => console.log(result))
   .catch(error => console.error(error));
