@@ -95,7 +95,7 @@ async function getWeather(city) {
       const info = document.getElementById("info");
       info.innerHTML = `
         <h1>Local Weather Forecast</h1>
-        <h3 id="location">${city}:</h3>
+        <h3 id="location">${city}</h3>
         <h3 id="temp">${temp}°C</h3>
         <h3 id="statement">The weather in ${city} is currently ${temp}°C with ${description}.</h3>
       `;
